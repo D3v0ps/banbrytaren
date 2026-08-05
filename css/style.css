@@ -15,6 +15,7 @@
   --gold-400: #d9b36c;
   --gold-500: #c9a15e;
   --gold-600: #a9823f;
+  --gold-700: #755721;
   --cream-50: #fdfaf4;
   --cream-100: #f8f1e5;
   --cream-200: #f0e4d0;
@@ -400,6 +401,9 @@ h3.display { font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
   gap: 24px;
 }
 @media (max-width: 900px) { .card-grid { grid-template-columns: 1fr; } }
+.card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 980px) { .card-grid.cols-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .card-grid.cols-4 { grid-template-columns: 1fr; } }
 
 .card {
   background: #fff;
@@ -470,7 +474,7 @@ h3.display { font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
 }
 .person-card .person-body { padding: 18px 20px 24px; }
 .person-card h3 { margin-bottom: 4px; color: var(--maroon-800); }
-.person-card .role { color: var(--gold-600); font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.person-card .role { color: var(--gold-700); font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; }
 .person-card p { color: var(--ink-soft); margin: 10px 0 0; font-size: 0.98rem; }
 
 /* ---------- Media/text-split ---------- */
@@ -594,7 +598,7 @@ h3.display { font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
 .form-field input:focus,
 .form-field select:focus,
 .form-field textarea:focus {
-  outline: 3px solid var(--gold-400);
+  outline: 3px solid var(--maroon-600);
   outline-offset: 1px;
 }
 .form-field input[type="file"] { padding: 11px; background: #fff; }
@@ -677,7 +681,7 @@ h3.display { font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
 }
 .timeline .when {
   font-weight: 800; font-size: 0.85rem; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--gold-600);
+  text-transform: uppercase; color: var(--gold-700);
 }
 .timeline h3 { margin: 2px 0 4px; }
 .timeline p { margin: 0; color: var(--ink-soft); }
@@ -729,8 +733,8 @@ h3.display { font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: clamp(28px, 4vw, 48px);
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1.1fr;
+  gap: clamp(24px, 3vw, 40px);
 }
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
