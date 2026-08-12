@@ -44,6 +44,37 @@
     }
   });
 
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var openSub = document.querySelector('.has-sub.open');
+    if (openSub) {
+      openSub.classList.remove('open');
+      var btn = openSub.querySelector('button');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.focus();
+      return;
+    }
+    if (nav && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      document.body.classList.remove('nav-open', 'nav-locked');
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.focus();
+      }
+    }
+  });
+
+  document.querySelectorAll('.has-sub').forEach(function (li) {
+    li.addEventListener('focusout', function () {
+      requestAnimationFrame(function () {
+        if (!li.contains(document.activeElement) && li.classList.contains('open')) {
+          li.classList.remove('open');
+          li.querySelector('button').setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  });
+
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(
       function (entries) {
