@@ -394,6 +394,46 @@ p { margin: 0 0 1.1em; max-width: 38em; }
   html { scroll-behavior: auto; }
 }
 
+/* ---------- Namnband ---------- */
+
+.name-marquee {
+  overflow: hidden;
+  margin-top: 44px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 26px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.name-track {
+  display: flex;
+  width: max-content;
+  animation: nameScroll 46s linear infinite;
+}
+.name-marquee:hover .name-track { animation-play-state: paused; }
+.name-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 clamp(28px, 4vw, 56px);
+  border-right: 1px solid var(--line);
+  white-space: nowrap;
+}
+.name-item .n {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.9vw, 1.5rem);
+  color: var(--ink);
+}
+.name-item .r {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand);
+  font-weight: 600;
+}
+@keyframes nameScroll { to { transform: translateX(-33.333%); } }
+@media (prefers-reduced-motion: reduce) { .name-track { animation: none; } }
+
 /* ---------- Siffror ---------- */
 
 .stats-grid {
