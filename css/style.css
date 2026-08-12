@@ -12,14 +12,15 @@
 
 :root {
   /* Banbrytarna – grund */
-  --paper: #faf7f2;
-  --paper-2: #f3ede4;
-  --ink: #1c1614;
-  --ink-2: #574d47;
-  --line: #e2d9cd;
+  --paper: #f2efe9;
+  --paper-2: #e9e3d8;
+  --sand: #e7dccb;
+  --ink: #191113;
+  --ink-2: #5a4f4b;
+  --line: #ddd4c6;
   --brand: #7a1f2e;
   --brand-soft: #9c3243;
-  --deep: #241417;
+  --deep: #201316;
   --deep-2: #35211f;
 
   /* Ordfestens palett (används i .theme-ordfest och för festivalinslag) */
@@ -36,12 +37,13 @@
   --cream-100: #f8f1e5;
   --cream-200: #f0e4d0;
 
-  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
-  --font-body: 'Figtree', system-ui, -apple-system, sans-serif;
+  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-body: 'Geist', 'Figtree', system-ui, -apple-system, sans-serif;
   --font-fest: 'Luckiest Guy', var(--font-display);
 
-  --radius: 4px;
-  --radius-lg: 6px;
+  --radius: 8px;
+  --radius-lg: 14px;
+  --block: 40px;
   --container: 1240px;
   --shadow-soft: 0 18px 44px rgba(28, 22, 20, 0.09);
 }
@@ -99,20 +101,21 @@ h1, h2, h3, h4 { line-height: 1.18; margin: 0 0 0.5em; font-weight: 500; }
   font-family: var(--font-display);
   font-weight: 400;
   font-style: normal;
-  letter-spacing: -0.015em;
-  line-height: 1.1;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
   text-transform: none;
   color: var(--ink);
+  text-wrap: balance;
 }
 
-h1.display { font-size: clamp(2.5rem, 5.2vw, 4.1rem); }
-h2.display { font-size: clamp(1.9rem, 3.4vw, 2.7rem); }
-h3.display { font-size: clamp(1.25rem, 2.1vw, 1.55rem); }
+h1.display { font-size: clamp(3rem, 7.6vw, 6.6rem); }
+h2.display { font-size: clamp(2.3rem, 5.4vw, 4.4rem); }
+h3.display { font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
 
 .display .accent { font-style: italic; color: var(--brand); }
 
 .lead {
-  font-size: clamp(1.1rem, 1.5vw, 1.24rem);
+  font-size: clamp(1.08rem, 1.4vw, 1.2rem);
   line-height: 1.65;
   color: var(--ink-2);
   max-width: 38em;
@@ -120,12 +123,12 @@ h3.display { font-size: clamp(1.25rem, 2.1vw, 1.55rem); }
 
 .kicker {
   display: inline-block;
-  font-weight: 600;
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--brand);
-  margin-bottom: 18px;
+  color: var(--ink);
+  margin-bottom: 26px;
 }
 
 .center { text-align: center; }
@@ -137,26 +140,30 @@ p { margin: 0 0 1.1em; max-width: 38em; }
 /* ---------- Knappar ---------- */
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 0.98rem;
+  font-size: 0.96rem;
   line-height: 1;
-  padding: 16px 30px;
+  padding: 17px 30px;
   border-radius: 999px;
-  border: 1px solid var(--deep);
+  border: 1px solid transparent;
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
 }
+.btn::after { content: "→"; font-size: 1.05em; transition: transform 0.18s ease; }
+.btn:hover::after { transform: translateX(4px); }
 
 .btn-primary { background: var(--deep); color: var(--paper); }
-.btn-primary:hover { background: var(--brand); border-color: var(--brand); color: #fff; }
+.btn-primary:hover { background: var(--brand); color: #fff; }
 
-.btn-gold { background: var(--brand); color: #fff; border-color: var(--brand); }
-.btn-gold:hover { background: var(--brand-soft); border-color: var(--brand-soft); color: #fff; }
+.btn-gold { background: var(--paper); color: var(--ink); }
+.btn-gold:hover { background: #fff; color: var(--brand); }
 
-.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
 .btn-ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
 .btn-ghost-light { color: var(--paper); border-color: rgba(250, 247, 242, 0.4); }
@@ -298,13 +305,20 @@ p { margin: 0 0 1.1em; max-width: 38em; }
 .section-maroon {
   background: var(--deep);
   color: var(--paper);
+  border-radius: var(--block);
+  margin: 0 clamp(12px, 2vw, 28px);
 }
+.section-maroon .display { color: var(--paper); }
 .section-maroon .display { color: var(--paper); }
 .section-maroon .kicker { color: var(--gold-400); }
 .section-maroon .lead, .section-maroon p { color: rgba(250, 247, 242, 0.82); }
 .section-maroon a:not(.btn) { color: var(--gold-300); }
 
-.section-cream { background: var(--paper-2); }
+.section-cream {
+  background: var(--sand);
+  border-radius: var(--block);
+  margin: 0 clamp(12px, 2vw, 28px);
+}
 
 /* ---------- Hero ---------- */
 /* Stående celler så bilderna aldrig plattas till en remsa på breda skärmar. */
