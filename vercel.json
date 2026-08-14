@@ -1,0 +1,24 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/om-oss.html", "destination": "/var-verksamhet#bakgrund", "permanent": true },
+    { "source": "/om-oss", "destination": "/var-verksamhet#bakgrund", "permanent": true },
+    { "source": "/aktiviteter.html", "destination": "/for-unga", "permanent": true },
+    { "source": "/aktiviteter", "destination": "/for-unga", "permanent": true },
+    { "source": "/for-foretag.html", "destination": "/boka-oss", "permanent": true },
+    { "source": "/for-foretag", "destination": "/boka-oss", "permanent": true },
+    { "source": "/om.html", "destination": "/var-verksamhet#bakgrund", "permanent": true },
+    { "source": "/for-skolor.html", "destination": "/anmal-klass", "permanent": true },
+    { "source": "/for-larare.html", "destination": "/skicka-bidrag", "permanent": true },
+    { "source": "/prisgalan.html", "destination": "/ordfesten-2025", "permanent": true },
+    { "source": "/antologin.html", "destination": "/ordfesten", "permanent": true },
+    { "source": "/unga-roster.html", "destination": "/ordfesten", "permanent": true },
+    { "source": "/tidigare-vinnare.html", "destination": "/ordfesten-2025", "permanent": true },
+    { "source": "/samarbeten.html", "destination": "/bli-partner", "permanent": true },
+    { "source": "/nyheter.html", "destination": "/var-verksamhet#media", "permanent": true },
+    { "source": "/arets-forfattare.html", "destination": "/ordfesten-2026#forfattare", "permanent": true },
+    { "source": "/arets-jury.html", "destination": "/ordfesten-2026#jury", "permanent": true }
+  ]
+}
