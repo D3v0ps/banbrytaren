@@ -241,10 +241,22 @@ p { margin: 0 0 1.1em; max-width: 38em; }
   padding: 8px;
   display: none;
   flex-direction: column;
+  align-items: stretch;
   gap: 1px;
+  text-align: left;
+}
+/* Osynlig brygga så menyn inte stängs när pekaren flyttas ner i glappet */
+.main-nav .sub-menu::before {
+  content: "";
+  position: absolute;
+  top: -12px; left: 0; right: 0;
+  height: 12px;
 }
 .main-nav .has-sub.open .sub-menu { display: flex; }
-@media (hover: hover) { .main-nav .has-sub:hover .sub-menu { display: flex; } }
+@media (hover: hover) {
+  .main-nav .has-sub:hover .sub-menu,
+  .main-nav .has-sub:focus-within .sub-menu { display: flex; }
+}
 .sub-menu a { display: block; border-radius: var(--radius); padding: 10px 14px; }
 
 .nav-toggle {
@@ -299,7 +311,7 @@ p { margin: 0 0 1.1em; max-width: 38em; }
   background: var(--deep);
   color: var(--paper);
   border-radius: var(--block);
-  margin: 0 clamp(12px, 2vw, 28px);
+  margin: clamp(18px, 2.5vw, 34px) clamp(12px, 2vw, 28px);
 }
 .section-maroon .display { color: var(--paper); }
 .section-maroon .display { color: var(--paper); }
@@ -310,8 +322,11 @@ p { margin: 0 0 1.1em; max-width: 38em; }
 .section-cream {
   background: var(--sand);
   border-radius: var(--block);
-  margin: 0 clamp(12px, 2vw, 28px);
+  margin: clamp(18px, 2.5vw, 34px) clamp(12px, 2vw, 28px);
 }
+/* Tydligt, avsiktligt andrum mellan sista rundade blocket och sidfoten */
+main > .section-maroon:last-child,
+main > .section-cream:last-child { margin-bottom: clamp(26px, 3.5vw, 48px); }
 
 /* ---------- Hero ---------- */
 /* Stående celler så bilderna aldrig plattas till en remsa på breda skärmar. */
@@ -528,6 +543,7 @@ p { margin: 0 0 1.1em; max-width: 38em; }
 @media (max-width: 560px) { .card-grid.cols-4 { grid-template-columns: 1fr; } }
 
 .card {
+  position: relative;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -535,6 +551,12 @@ p { margin: 0 0 1.1em; max-width: 38em; }
   display: flex;
   flex-direction: column;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+/* Hela kortet klickbart när det innehåller en kortlänk */
+.card a.card-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 .card:hover { box-shadow: var(--shadow-soft); transform: translateY(-3px); }
 .card .card-img { aspect-ratio: 16/10; overflow: hidden; background: var(--paper-2); }
@@ -659,6 +681,38 @@ p { margin: 0 0 1.1em; max-width: 38em; }
 }
 .partner-chip.solid { color: var(--ink); }
 
+/* Loggvägg för samarbetspartners */
+.logo-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+  max-width: 960px;
+  margin-inline: auto;
+}
+@media (max-width: 640px) { .logo-wall { grid-template-columns: repeat(2, 1fr); } }
+.logo-chip {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  min-height: 108px;
+  padding: 22px 26px;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-chip img { max-width: 100%; max-height: 54px; width: auto; height: auto; }
+.logo-chip-text {
+  font-weight: 600;
+  color: var(--ink);
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+.partner-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  font-style: italic;
+  color: var(--ink);
+}
+
 /* ---------- Formulär ---------- */
 
 .form-card {
@@ -758,6 +812,15 @@ p { margin: 0 0 1.1em; max-width: 38em; }
   display: flex; align-items: center; justify-content: center;
   padding-left: 5px;
 }
+.soon-pill {
+  border: 1px solid rgba(250, 247, 242, 0.5);
+  border-radius: 999px;
+  color: var(--paper);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 10px 20px;
+}
 
 /* ---------- Aktiviteter ---------- */
 
@@ -797,6 +860,38 @@ p { margin: 0 0 1.1em; max-width: 38em; }
 .cta-band { text-align: center; }
 .cta-band .btn-row { justify-content: center; margin-top: 30px; }
 .cta-band .lead { margin-inline: auto; }
+
+/* ---------- Citat ---------- */
+
+.quote-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+@media (max-width: 900px) { .quote-grid { grid-template-columns: 1fr; max-width: 640px; margin-inline: auto; } }
+.quote-card {
+  margin: 0;
+  background: var(--sand);
+  border-radius: var(--radius-lg);
+  padding: 34px 30px 28px;
+  display: flex;
+  flex-direction: column;
+}
+.quote-card p {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  line-height: 1.35;
+  color: var(--ink);
+  margin: 0 0 20px;
+  flex: 1;
+}
+.quote-card footer {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
 
 /* ---------- Sidfot ---------- */
 
@@ -972,6 +1067,7 @@ p { margin: 0 0 1.1em; max-width: 38em; }
 .theme-ordfest .marquee { background: var(--maroon-700); border-top: 3px solid var(--maroon-900); border-bottom: 3px solid var(--maroon-900); }
 .theme-ordfest .marquee span { font-family: var(--font-fest); font-size: 1.2rem; }
 .theme-ordfest .site-footer h3 { font-family: var(--font-fest); font-size: 1rem; letter-spacing: 0.06em; }
+.theme-ordfest .choice-label { font-family: var(--font-fest); text-transform: uppercase; font-size: 1.3rem; letter-spacing: 0.02em; }
 
 
 /* ---------- Tre vägar in (startsidans avslutning) ---------- */
