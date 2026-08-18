@@ -699,6 +699,8 @@ main > .section-cream:last-child { margin-bottom: clamp(26px, 3.5vw, 48px); }
   display: flex; align-items: center; justify-content: center;
 }
 .logo-chip img { max-width: 100%; max-height: 54px; width: auto; height: auto; }
+/* Kompakta loggor (låg bredd i förhållande till höjden) får ta mer höjd */
+.logo-chip img.logo-lg { max-height: 82px; }
 .logo-chip-text {
   font-weight: 600;
   color: var(--ink);
